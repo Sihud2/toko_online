@@ -7,7 +7,7 @@
             <img src="{{ url('img/logo.jpeg') }}" alt="" width="200" class="rounded-circle" style="box-shadow: 5px 10px 18px rgb(136, 136, 136, .8) ;">
         </div>
         @foreach ($barangs as $barang )
-            <div class="col-md-4">
+            <div class="col-md-4   mb-3">
                 <div class="card">
                     <img src="{{ url('toko_online') }}/{{ $barang->gambar }}" class="card-img-top" alt="...">
                     <div class="card-body">
@@ -16,8 +16,7 @@
                           <strong>Harga :</strong> Rp.{{ number_format($barang->harga) }} <br>
                           <strong>Stok :</strong> {{ $barang->stok }} <br>
                           <hr>
-                          <strong>Terjual :</strong> <br>
-                          {{ $barang->keterangan }}
+                          <strong>Terjual : </strong> {{ $barang->terjual }}
                           {{-- @php
                             //   $kode = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
                             //   echo substr(str_shuffle($kode),0,8);

@@ -39,12 +39,19 @@
                                 <td>{{ number_format($barang->stok) }}</td>
                             </tr>
                             <tr>
-                                <td>Keterangan</td>
+                                <td>Ukuran</td>
                                 <td>:</td>
-                                <td>{{($barang->keterangan) }}</td>
+                                <td>{{($barang->ukuran) }}</td>
                             </tr>
                             <tr>
-                                <td>jumlah pesan</td>
+                                <td>Pilih Ukuran</td>
+                                <td>:</td>
+                                <td>
+                                    <input type="text">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Jumlah Pesan</td>
                                 <td>:</td>
                                 <td>
                                     <form action="{{ url('home') }}/{{ $barang->id }}" method="post">
@@ -55,6 +62,7 @@
                                 </td>
                             </tr>
                         </table>
+
                     </div>
                 </div>
             </div>

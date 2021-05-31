@@ -33,6 +33,3 @@ Route::post('/profil', 'ProfileController@update');
 // Route untuk riwayat
 Route::get('/riwayat', 'RiwayatController@index');
 Route::get('/riwayat/{id}', 'RiwayatController@detail');
-
-
-// Route::post('/home/{barang}', 'PasanController@pesan');

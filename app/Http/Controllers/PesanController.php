@@ -77,7 +77,7 @@ class PesanController extends Controller
         $pesanan->update();
         
         alert()->success('Pesanan Masuk Keranjang', 'Berhasil!');
-        return redirect('home');
+        return redirect('check_out');
     }
 
     public function check()

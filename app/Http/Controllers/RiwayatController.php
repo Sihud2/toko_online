@@ -34,7 +34,7 @@ class RiwayatController extends Controller
     {
         $pesanan = Pesanan::where('id', $id)->first();
         $pesanan_details = PesananDetail::where('pesanan_id', $pesanan->id)->get();
-        return view('riwayat.', compact('pesanan', 'pesanan_details'));
+        return view('riwayat.detail', compact('pesanan', 'pesanan_details'));
     }
     /**
      * Show the form for creating a new resource.
