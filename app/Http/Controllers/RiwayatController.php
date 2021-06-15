@@ -9,6 +9,7 @@ use App\Models\PesananDetail;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class RiwayatController extends Controller
 {
@@ -24,8 +25,6 @@ class RiwayatController extends Controller
      */
     public function index()
     {
-        // echo "sampai sini nich";
-        // $pesanans = Pesanan::where('user_id', Auth::user()->id)->where('status','!=',0)->first();
         $pesanan = Pesanan::where('user_id', Auth::user()->id)->where('status', 1)->get();
         return view('riwayat.riwayat', compact('pesanan'));
     }
@@ -33,7 +32,7 @@ class RiwayatController extends Controller
     public function detail($id)
     {
         $pesanan = Pesanan::where('id', $id)->first();
-        $pesanan_details = PesananDetail::where('pesanan_id', $pesanan->id)->get();
+        $pesanan_detail = PesananDetail::where('pesanan_id', $pesanan->id)->get();
         return view('riwayat.detail', compact('pesanan', 'pesanan_details'));
     }
     /**

@@ -11,11 +11,13 @@ class Pesanan extends Model
 
     public function user()
     {
+        // 
         return $this->belongsTo('App\User','user_id','id');
     }
 
     public function pesanan_detail()
     {
+        // has many = one to many
         return $this->hasMany('App\PesananDetail','pesanan_id', 'id');
     }
 }

@@ -7,10 +7,10 @@
 @section('content')
 <div class="container">
    <div class="row">
-       <div class="col-md-12 ml-1">
-           <a href="{{ url('home') }}" class="btn btn-primary fw-bold"><i class="fa fa-arrow-left"></i> Kembali</a>
+       <div class="col-md-12">
+           <a href="{{ url('home') }}" class="btn btn-primary fw-bold mb-1"><i class="fa fa-arrow-left"></i> Kembali</a>
        </div>
-       <div class="col-md-12 mt-3">
+       <div class="col-md-12 mt-1">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
               <li class="breadcrumb-item"><a href="{{ url('home') }}">Home</a></li>

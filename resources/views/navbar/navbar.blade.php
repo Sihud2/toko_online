@@ -14,19 +14,18 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-    <link src="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
-
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm fixed">
+        <nav class="navbar navbar-expand-md navbar-light bg-white fixed-top shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{-- {{ config('app.name', 'Laravel') }} --}}
-                    <img src="{{ url('img/BRWK.INC.jpg') }}" alt="" width="100" height="">
+                    <img src="{{ url('img/BRWK.INC.jpg') }}" alt="" width="100">
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -44,51 +43,33 @@
                         @guest
                             @if (Route::has('login'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                    <a class="nav-link btn btn-primary text-white mr-2" href="{{ route('login') }}">{{ __('Login') }}</a>
                                 </li>
                             @endif
 
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a class="nav-link btn btn-secondary text-white" href="{{ route('register') }}">{{ __('Register') }}</a>
                                 </li>
                             @endif
                         @else
-                        {{-- Notifikasi Keranjang --}}
-                            <li class="nav-item">
-                                <?php
-                                // ID User 
-                                $pesanan_user = \App\Models\Pesanan::where('user_id', Auth::user()->id)->where('status', 0)->first();
-                                
-                                if(!empty($pesanan_user))
-                                    {
-                                        // Notif Keranjang
-                                        $notif_pesanan = \App\Models\PesananDetail::where('pesanan_id', $pesanan_user->id)->count();    
-                                    }
-                                ?>
-                                <a href="{{ url('check_out') }}" class="nav-link"><i class="fa fa-shopping-cart"></i>
-                                 @if(!empty($notif_pesanan))
-                                     <span class="badge badge-danger">{{ $notif_pesanan }}</span>
-                                 @endif
-                                </a>
-                            </li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
                                 </a>
                                 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ url('profil') }}">
+                                    {{-- <a class="dropdown-item" href="{{ url('profil') }}"> --}}
                                         {{-- {{ __('Logout') }} --}}
-                                        Profile
-                                    </a>
+                                        {{-- Profile --}}
+                                    {{-- </a> --}}
 
-                                    <a class="dropdown-item" href="{{ url('riwayat') }}">
+                                    {{-- <a class="dropdown-item" href="{{ url('riwayat') }}"> --}}
                                         {{-- {{ __('Logout') }} --}}
-                                        Riwayat Pemesanan
-                                    </a>
+                                        {{-- Riwayat Pemesanan --}}
+                                    {{-- </a> --}}
 
-                                    <a class="dropdown-item" href="{{ route('login') }}"
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}

@@ -48,7 +48,7 @@
         <div class="col-md-12 mt-2">
             <div class="card">
                 <div class="card-body">
-                    <h4><i class="fa fa-pencil"></i>Edit</h4>
+                    <h4><i class="fa fa-pencil-square-o"></i>Edit</h4>
                     <form method="POST" action="{{ url('profil') }}">
                         @csrf
                         <div class="form-group row">

@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
 Auth::routes();
@@ -25,6 +25,8 @@ Route::post('/home/{barang}', 'PesanController@pesan');
 Route::get('/check_out', 'PesanController@check');
 Route::get('/konfirmasi', 'PesanController@konfirmasi');
 Route::delete('/check_out/{id}', 'PesanController@hapus');
+Route::get('/penjual', 'PesanController@penjual');
+// Route::get('/penjual', 'PesanController@penjual');
 
 // Route untuk profile
 Route::get('/profil', 'ProfileController@index');

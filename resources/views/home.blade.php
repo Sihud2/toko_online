@@ -9,7 +9,7 @@
         @foreach ($barangs as $barang )
             <div class="col-md-4   mb-3">
                 <div class="card">
-                    <img src="{{ url('toko_online') }}/{{ $barang->gambar }}" class="card-img-top" alt="...">
+                    <img src="{{ url('toko_online') }}/{{ $barang->gambar }}" class="card-img-top" alt="..." width="200">
                     <div class="card-body">
                       <h5 class="card-title">{{ $barang->nama_barang }}</h5>
                       <p class="card-text">

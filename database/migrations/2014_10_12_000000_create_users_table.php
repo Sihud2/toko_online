@@ -21,6 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('alamat')->nullable();
             $table->string('nohp')->nullable();
+            $table->string('bukti_transaksi');
             $table->rememberToken();
             $table->timestamps();
         });

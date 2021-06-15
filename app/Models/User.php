@@ -19,6 +19,7 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'bukti_transaksi',
         'password',
     ];
 
@@ -43,6 +44,7 @@ class User extends Authenticatable
 
     public function pesanan()
     {
+        // hasmany = one to many
         // return $this->hasMany('App\Model\Pesanan','user_id', 'id');
         return $this->hasMany('App\Pesanan','user_id', 'id');
     }

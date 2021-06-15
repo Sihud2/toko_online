@@ -43,10 +43,9 @@ class PesanController extends Controller
             $pesanan->tanggal = $tanggal;
             $pesanan->status = 0;
             $pesanan->jumlah_harga = 0;
-            $pesanan->biaya_admin = mt_rand(1000, 9999);
+            $pesanan->biaya_admin = 1000;
             $pesanan->save();
         }
-
 
         // Pesanan sesuai data id user
         $pesanan_baru = Pesanan::where('user_id', Auth::user()->id)->where('status', 0)->first();
@@ -58,6 +57,7 @@ class PesanController extends Controller
             $pesanan_detail = new PesananDetail();
             $pesanan_detail->barang_id = $barang->id;
             $pesanan_detail->pesanan_id = $pesanan_baru->id;
+            $pesanan_detail->ukuran = $request->ukuran;
             $pesanan_detail->jumlah = $request->jumlah_pesan;
             $pesanan_detail->jumlah_harga = $barang->harga * $request->jumlah_pesan;
             $pesanan_detail->save();
@@ -89,6 +89,7 @@ class PesanController extends Controller
             $pesanan_details = PesananDetail::where('pesanan_id', $pesanan->id)->get();
             return view('pesan.check_out', compact('pesanan', 'pesanan_details'));
         }else{
+            alert()->success('Chcek Out', 'Berhasil!');
             return view('pesan.check_out', compact('pesanan'));
         }
         
