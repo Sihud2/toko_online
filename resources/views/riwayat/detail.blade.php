@@ -14,6 +14,7 @@
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
               <li class="breadcrumb-item"><a href="{{ url('home') }}">Home</a></li>
+              <li class="breadcrumb-item"><a href="{{ url('riwayat') }}">Riwayat</a></li>
               <li class="breadcrumb-item active" aria-current="page">Riwayat Pemesanan</li>
             </ol>
           </nav>
@@ -21,37 +22,63 @@
        <div class="col-md-12">
            <div class="card">
                <div class="card-body">
-                   <h3><i class="fa fa-history"></i> Riwayat Pemesanan</h3> 
+                   {{-- <h3><i class="fa fa-history"></i> Riwayat Pemesanan</h3>  --}}
+                   <img src="{{ asset('img/logo_bri.png') }}" alt="" width="80">
+                   <p style="margin-top: 10px; font-size: 18px; font-weight: bold;">Lakukan Transfer ke No.Rek 123-8123-123-12 Atas Nama : BRWK.INC</p>
                    <table class="table table-warning table-striped mt-3">
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>Tanggal</th>
-                            <th>Status</th>
+                            <th>Barang</th>
+                            <th>Ukuran</th>
+                            <th>jumlah Barang</th>
                             <th>Jumlah Harga</th>
-                            <th>Aksi</th>
                         </tr>    
                     </thead>
                     <tbody>
                         @foreach ($pesanan_detail as $pesanan)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
-                            <td>{{ $pesanan->tanggal }}</td>  
-                            <td>
-                                @if($pesanan->status = 1)
-                                    <p style="color: red;">Belum Bayar</p>
-                                @elseif($pesanan->status = 2)
-                                    <p style="color: #0275d8;">Sudah Bayar</p>
-                                @endif
+                            <td>{{ $pesanan->barang->nama_barang }}</td>
+                            <td>{{ $pesanan->ukuran }}</td>
+                            <td>{{ $pesanan->jumlah }}</td>
+                            <td>{{ $pesanan->jumlah_harga }}</td>
+                        </tr>
+                        <tr>
+                            <td colspan="4" align="right">
+                                Total :
                             </td>
-                            <td>Rp. {{ number_format($pesanan->jumlah_harga + $pesanan->biaya_admin) }}</td>
                             <td>
-                                <a href="{{ urk('detail') }}/{{ $pesanan->id }}" class="btn btn-primary">Rincian</a>
+                                {{ $pesanan->jumlah_harga }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="4" align="right">
+                                Biaya admin :
+                            </td>
+                            <td>
+                                {{ $pesanan->pesanan->biaya_admin }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="4" align="right">
+                                Total Bayar :
+                            </td>
+                            <td>
+                                {{ $pesanan->jumlah_harga + $pesanan->pesanan->biaya_admin }}
                             </td>
                         </tr>
                         @endforeach
                     </tbody>
                    </table>
+                   <p class="font-weight-bold">Upload Bukti Transfer</p>
+                   {{-- <form action="{{ url('/riwayat') }}/{{ $pesanan->id }}" method="post" enctype="multipart/form-data"> --}}
+                   <form action="" method="post" enctype="multipart/form-data">
+                    @csrf   
+                    <input type="file" name="bukti_transaksi"><br>
+                    <button type="submit" class="btn btn-primary mt-2">Upload</button>
+                   </form>
+                   {{-- @endforeach --}}
                </div>
            </div>
        </div>

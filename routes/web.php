@@ -34,8 +34,9 @@ Route::post('/profil', 'ProfileController@update');
 
 // Route untuk riwayat
 Route::get('/riwayat', 'RiwayatController@index');
+Route::post('/riwayat', 'RiwayatController@statusPengiriman'); // nanti dibuat kan ya.
 Route::get('/riwayat/{id}', 'RiwayatController@detail');
-
+Route::post('/riwayat/{id}', 'PesanController@transaksi');
 
 // Route untuk admin
 Route::get('/tambahBarang', 'AdminController@index');

@@ -26,14 +26,16 @@ class RiwayatController extends Controller
     public function index()
     {
         $pesanan = Pesanan::where('user_id', Auth::user()->id)->where('status', 1)->get();
-        return view('riwayat.riwayat', compact('pesanan'));
+        $pesanan_2 = Pesanan::where('user_id', Auth::user()->id)->where('status', 2)->get();
+        $pesanan_3 = Pesanan::where('user_id', Auth::user()->id)->where('status', 3)->get();
+        return view('riwayat.riwayat', compact('pesanan', 'pesanan_2', 'pesanan_3'));
     }
 
     public function detail($id)
     {
         $pesanan = Pesanan::where('id', $id)->first();
         $pesanan_detail = PesananDetail::where('pesanan_id', $pesanan->id)->get();
-        return view('riwayat.detail', compact('pesanan', 'pesanan_details'));
+        return view('riwayat.detail', compact('pesanan', 'pesanan_detail'));
     }
     /**
      * Show the form for creating a new resource.

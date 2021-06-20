@@ -33,9 +33,9 @@
 </div>
 
 <div class="footer-1">
-    <footer class="bg-dark p-3" style="margin-bottom: -30px">
-        <p class="text-center text-white p-2"><i class="bi bi-bag-fill text-light"></i> <a href="" class="fw-bold" style="color: white;">BRWK.INC </a> 2021<p> --}}
-            <p class="text-center text-white p-2"><img src="{{ url('img/copyright.png') }}" alt="" width="18px"> 2021 <a href="" class="fw-bold" style="color: white;">BRWK.INC</a><p>
+    <footer class="bg-dark p-1" style="margin-bottom: -30px">
+        {{-- <p class="text-center text-white"><i class="bi bi-bag-fill text-light"></i> <a href="" class="fw-bold" style="color: white;">BRWK.INC </a> 2021<p> --}}
+            <p class="text-center text-white p-2" style="margin-top: 6px;"><img src="{{ url('img/copyright.png') }}" alt="" width="18px"> 2021 <a href="" class="fw-bold" style="color: white;;">BRWK.INC</a><p>
         </footer>
 </div>
 

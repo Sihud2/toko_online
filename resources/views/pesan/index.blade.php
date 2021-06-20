@@ -47,7 +47,7 @@
                                 <td>Pilih Ukuran</td>
                                 <td>:</td>
                                 <td>
-                                    <form action="{{ url('home') }}/{{ $barang->id }}" method="post">
+                                    <form action="{{ url('home') }}/{{ $barang->id }}" method="post" style="text-transform: capitalize;">
                                     @csrf
                                         <input type="text" name="ukuran"> 
                                 </td>
