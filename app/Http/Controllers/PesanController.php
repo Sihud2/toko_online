@@ -146,13 +146,13 @@ class PesanController extends Controller
         $transaksi->barang_id = $barang->id;
         $transaksi->bukti_transaksi = $gambar->getClientOriginalName();
         $transaksi->alamat = Auth::user()->alamat;
-        $transaksi->status_pengiriman = "";
         $transaksi->created_at = date('Y-m-d H:i:s');
         $transaksi->updated_at = date('Y-m-d H:i:s');
         $transaksi->save();
 
         $pesanan_status = Pesanan::where('user_id', Auth::user()->id)->where('status', 1)->first();
-        $pesanan_status->status = 2;
+        $pesanan_status->status = 2; // status user membayar
+        $pesanan_status->status_pengiriman = "";
         $pesanan_status->update();
         
         $pesanan = Pesanan::where('id', $id)->first();

@@ -25,7 +25,6 @@
                    <table class="table table-warning table-striped mt-3">
                     <thead class="text-center">
                         <tr>
-                            {{-- <th>No</th> --}}
                             <th>Tanggal</th>
                             <th>Status</th>
                             <th>Jumlah Harga</th>

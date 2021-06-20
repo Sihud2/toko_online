@@ -17,6 +17,7 @@ class CreatePesananDetailsTable extends Migration
             $table->bigIncrements('id');
             $table->integer('barang_id');
             $table->integer('pesanan_id');
+            $table->string('ukuran');
             $table->integer('jumlah');
             $table->integer('jumlah_harga');
             $table->timestamps();
