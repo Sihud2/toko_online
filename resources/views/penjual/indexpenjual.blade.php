@@ -12,17 +12,19 @@
   </head>
   <style>
     body{
-      width: 200vh;
+      width: 100vh;
       background:   linear-gradient(rgba(0, 0, 0, 0.7),rgba(0, 0, 0, 0.7)),url('img/background.jpg');
-      /* background: repeat; */
+      background-position: center;
       background-size: cover;
+      /* height: 100vh; */
     }
   </style>
   <body>
 
-    <div class="container" style="display: block; margin: 10% auto; margin-left: 20%;">
+    {{-- <div class="container" style="display: block; margin: 10% auto; margin-left: 20%;"> --}}
+    <div class="container" style="display: block; margin-top: 30%; margin-bottom: 30%; margin-left: 40%;">
         <div class="col-md-8 mt-1" style="justify-content: space-between;">
-            <div class="card">
+            <div class="card" style="width: 200%;">
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-4">
