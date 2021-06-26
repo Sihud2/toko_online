@@ -1,27 +1,44 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('penjual.navbar')
+@section('content')
+<center>
+    <h2 class="mt-3">Kirim Barang</h2>
+</center>
+<div class="container">
+      <div class="col-md-12 mt-5">
+          <div class="card">
+              <div class="card-body">
+                  <table class="table table-warning table-striped mt-3">
+                   <thead class="text-center">
+                       <tr>
+                           <th>Pelanggan</th>
+                           <th>Pesan Barang</th>
+                           <th>Ukuran</th>
+                           <th>Jumlah Barang</th>
+                           <th>Alamat</th>
+                           <th>Aksi</th>
+                       </tr>    
+                   </thead>
+                   <tbody class="text-center">
+                     @foreach ( $transaksi as $pesan_masuk)
+                     <tr>
+                       <td>{{ $pesan_masuk->user['name']}}</td>
+                       <td>{{ $pesan_masuk->barang['nama_barang'] }}</td>
+                       <td>{{ $pesan_masuk->ukuran}}</td>
+                       <td>{{ $pesan_masuk->jumlah_barang }}</td>
+                       <td>{{ $pesan_masuk->user['alamat'] }}</td>
+                        <td>
+                         <form action="" method="post">
+                             @csrf
+                        </form>  
+                        </td>
+                     </tr>
+                     @endforeach
+                   </tbody>
+                  </table>
+              </div>
+          </div>
+       </div>
+  </div>
+</div>
 
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-
-    <title>Kirim Barang</title>
-  </head>
-  <body>
-    <h1>halaman kirim barang</h1>
-
-    <!-- Optional JavaScript; choose one of the two! -->
-
-    <!-- Option 1: Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
-
-    <!-- Option 2: Separate Popper and Bootstrap JS -->
-    <!--
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
-    -->
-  </body>
-</html>
+@endsection

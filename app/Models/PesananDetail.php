@@ -16,6 +16,6 @@ class PesananDetail extends Model
 
     public function pesanan()
     {
-        return $this->belongsTo("App\Models\Pesanan",'pesanan_id','id');
+        return $this->belongsTo("App\Models\Pesanan",'pesanan_id','id', 'status_pengiriman');
     }
 }

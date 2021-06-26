@@ -6,27 +6,52 @@ use App\Models\Pesanan;
 use App\Models\PesananDetail;
 use App\Models\Transaksi;
 use App\Models\User;
+use DB;
+use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
-
     public function kirim()
     {
-        return view('penjual.kirimBarang');
+        $transaksi = Transaksi::get();
+        return view('penjual.kirimBarang', compact('transaksi'));
     }
 
     public function pesanMasuk()
     {
-        return view('penjual.pesanBarang');
+        $transaksi = Transaksi::get();
+        return view('penjual.pesanBarang', compact('transaksi'));
+    }
+    
+    public function statusproses()
+    {
+        return redirect('pesanBarang'); 
+    }
+
+    public function resi($id)
+    {
+        $data = DB::table('transaksis')->where('id', $id)->get();
+        $transaksi = Transaksi::get();
+        return view('penjual.no_resi', compact('data', 'transaksi'));
+    }
+
+    public function kirimresi(Request $request, $id)
+    {
+       DB::table('transaksis')->update([
+           'status_pengiriman' => '1',
+            'no_resi' => $request->resi
+       ]);
+
+       return redirect('kirimBarang');
     }
 
     public function laporan()
     {
         return view('penjual.laporan');
     }
-    
+
     /**
      * Display a listing of the resource.
      *

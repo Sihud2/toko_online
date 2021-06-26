@@ -9,6 +9,8 @@ class Barang extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['id'];
+
     public function pesanan_detail()
     {
         return $this->hasMany('App\PesananDetail','barang_id', 'id');

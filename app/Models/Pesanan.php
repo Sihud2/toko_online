@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Pesanan extends Model
 {
     use HasFactory;
+    protected $fillable = ['tanggal'];
 
     public function user()
     {

@@ -34,15 +34,13 @@
                         </tr>    
                     </thead>
                     <tbody class="text-center">
-                    @foreach ($pesanan_detail as $proses)
+                    @foreach ($transaksi as $proses)
                         <tr>
                             <td>{{ $proses->barang->nama_barang }}</td>  
                             <td>{{ $proses->pesanan->tanggal }}</td>
                             <td>
-                                @if($proses->pesanan->status_pengiriman = " ")
-                                    <p class="text-danger">Belum diProses</p>
-                                @elseif($proses->pesanan->status_pengiriman = "1")
-                                    <p class="text-success">Sedang diProses</p>
+                                @if($proses->status_pengiriman == '')
+                                    <p class="text-danger">Belum diProses </p>   
                                 @else
                                     <p class="text-success">Sedang diKemas</p>
                                 @endif

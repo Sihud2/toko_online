@@ -26,7 +26,7 @@ Route::get('/check_out', 'PesanController@check');
 Route::get('/konfirmasi', 'PesanController@konfirmasi');
 Route::delete('/check_out/{id}', 'PesanController@hapus');
 Route::get('/penjual', 'PesanController@penjual');
-// Route::get('/penjual', 'PesanController@penjual');
+Route::get('/kirim_barang', 'PesanController@statusperjalanan');
 
 // Route untuk profile
 Route::get('/profil', 'ProfileController@index');
@@ -46,6 +46,10 @@ Route::post('/proses', 'RiwayatController@tandaSampai'); // nanti dikerjakan
 Route::get('/tambahBarang', 'AdminController@index');
 Route::post('/tambahBarang', 'AdminController@tambahbarang');
 Route::get('/kirimBarang', 'AdminController@kirim');
+// no resi
+Route::get('/kirimBarang/{id}', 'AdminController@resi');
+Route::post('/kirimBarang/{id}', 'AdminController@kirimresi');
 Route::get('/pesanBarang', 'AdminController@pesanMasuk');
+Route::post('/pesanBarang', 'AdminController@statusproses');
 Route::get('/laporan', 'AdminController@laporan');
-// Route::get('/tambahBarang', 'AdminController@index');
+

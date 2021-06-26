@@ -34,8 +34,7 @@
                     <tbody class="text-center">
                     @foreach ($pesanan as $pesan)
                         <tr>
-                            {{-- <td>{{ $loop->iteration }}</td> --}}
-                            <td>{{ $pesan->tanggal }}</td>  
+                            <td>{{ $pesan->tanggal }}</td>    
                             <td>
                                 <p style="color: red;">Belum dibayar</p>
                             </td>
@@ -49,7 +48,6 @@
                     <tbody class="text-center">
                         @foreach ($pesanan_2 as $pesan)
                             <tr>
-                                {{-- <td>{{ $loop->iteration }}</td> --}}
                                 <td>{{ $pesan->tanggal }}</td>  
                                 <td>
                                     <p style="color: blue;">Sudah dibayar</p>

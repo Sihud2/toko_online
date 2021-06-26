@@ -6,6 +6,7 @@ use App\Models\PesananDetail;
 use App\Models\Transaksi;
 use App\Models\User;
 use Carbon\Carbon;
+use DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Ui\Presets\React;
@@ -45,6 +46,7 @@ class PesanController extends Controller
             $pesanan->status = 0;
             $pesanan->jumlah_harga = 0;
             $pesanan->status_pengiriman = "";
+            $pesanan->no_resi = "";
             $pesanan->biaya_admin = 1000;
             $pesanan->save();
         }
@@ -104,7 +106,8 @@ class PesanController extends Controller
         $pesanan->jumlah_harga -= $pesanan_detail->jumlah_harga;
         $pesanan->update();
         alert()->success('Pesanan Masuk Keranjang', 'Berhasil!');
-        $pesanan_detail->delete();
+        $pesanan_detail->delete(); // di table detailpesanan
+        $pesanan->delete(); // di table pesanan
 
         alert()->success('Berhasil!', 'Pesanan Dihapus');
         return redirect('check_out');
@@ -126,10 +129,12 @@ class PesanController extends Controller
 
     public function transaksi(Request $request, $id)
     {
-        $barang = Barang::where('id', $id)->first();
+        // $barang = Barang::where('id', $id)->first();
+        $pesanan_detail = DB::table('pesanan_details')->select('barang_id', 'pesanan_id', 'jumlah', 'ukuran')->first();
+        // $pesanan_detail = DB::table('pesanan_details')->select('pesanan_id')->first();
         $transaksi = new Transaksi();
         $pesanan_user = Pesanan::where('user_id', Auth::user()->id)->where('status', 1)->first();
-        
+
         // berdasarkan form input
         $this->validate($request, [ 
 			'bukti_transaksi' => 'required|file|image|mimes:jpeg,png,jpg|max:2048',
@@ -142,24 +147,41 @@ class PesanController extends Controller
 		$gambar->move($folder_simpan,$gambar->getClientOriginalName());
   
         $transaksi->user_id = Auth::user()->id;
-        $transaksi->pesanan_id = $pesanan_user->id;
-        $transaksi->barang_id = $barang->id;
+        $transaksi->barang_id = $pesanan_detail->barang_id;
+        $transaksi->pesanan_id = $pesanan_detail->pesanan_id;
+        $transaksi->ukuran = $pesanan_detail->ukuran;
+        $transaksi->jumlah_barang = $pesanan_detail->jumlah;
         $transaksi->bukti_transaksi = $gambar->getClientOriginalName();
         $transaksi->alamat = Auth::user()->alamat;
+        $transaksi->status_pengiriman = "";
+        $transaksi->no_resi = "";
         $transaksi->created_at = date('Y-m-d H:i:s');
         $transaksi->updated_at = date('Y-m-d H:i:s');
         $transaksi->save();
 
+        // status jumlah stok barang ketika sudah dibeli
+        $barang_stok = Barang::where('id', $pesanan_detail->barang_id)->first();
+        $barang_stok->stok -= $pesanan_detail->jumlah; 
+        $barang_stok->terjual += $pesanan_detail->jumlah;
+        $barang_stok->update();   
+
+        // status ketika sudah kirim bukti pembayaran
         $pesanan_status = Pesanan::where('user_id', Auth::user()->id)->where('status', 1)->first();
         $pesanan_status->status = 2; // status user membayar
         $pesanan_status->status_pengiriman = "";
         $pesanan_status->update();
-        
+
         $pesanan = Pesanan::where('id', $id)->first();
         $pesanan_detail = PesananDetail::where('pesanan_id', $pesanan->id)->get();
         
         alert()->success('Upload', 'Berhasil!');
         return view('riwayat.detail', compact('pesanan','pesanan_detail'));
+    }
+
+    public function statusperjalanan()
+    {
+        $transaksi = Transaksi::get();
+        return view('riwayat.kirim_barang');
     }
 
 }

@@ -44,7 +44,7 @@
                                 </thead>
                                 <thead>
                                   <tr>
-                                        <th><a href="/pesanBarang" style="text-decoration: none">Pesan Barang</a></th>
+                                        <th><a href="/pesanBarang" style="text-decoration: none">Pesanan Barang</a></th>
                                   </tr>
                                 </thead>
                                 <thead style="text-align: right">

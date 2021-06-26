@@ -20,6 +20,7 @@ class CreatePesanansTable extends Migration
             $table->integer('biaya_admin');
             $table->integer('jumlah_harga');
             $table->string('status_pengiriman');
+            $table->string('no_resi');
             $table->timestamps();
         });
     }

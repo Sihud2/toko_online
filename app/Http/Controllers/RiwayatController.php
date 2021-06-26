@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Barang;
 use App\Models\Pesanan;
 use App\Models\PesananDetail;
+use App\Models\Transaksi;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -40,9 +41,8 @@ class RiwayatController extends Controller
 
     public function proses()
     {
-        $pesanan = Pesanan::where('user_id', Auth::user()->id)->where('status', 2)->first();
-        $pesanan_detail = PesananDetail::where('pesanan_id', $pesanan->id)->get(); 
-        return view('riwayat.proses', compact('pesanan', 'pesanan_detail'));
+        $transaksi = Transaksi::get();
+        return view('riwayat.proses', compact('transaksi'));
     } 
 
     public function tujuanUser()

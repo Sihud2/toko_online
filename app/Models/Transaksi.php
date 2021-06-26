@@ -23,15 +23,8 @@ class Transaksi extends Model
         return $this->belongsTo("App\Models\Pesanan",'pesanan_id','id');
     }
 
-    /*
-    public function getCreatedAtAttribute($date)
+    public function pesanan_detail()
     {
-    return Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $date)->format('Y-m-d');
+        return $this->belongsTo('App\Models\PesananDetail','pesanan_detail', 'id');
     }
-
-    public function getUpdatedAtAttribute($date)
-    {
-    return Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $date)->format('Y-m-d');
-    }
-    */
 }
