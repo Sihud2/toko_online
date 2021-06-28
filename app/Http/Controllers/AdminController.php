@@ -94,6 +94,50 @@ class AdminController extends Controller
         return redirect('tambahBarang');
     }
 
+    public function databarang()
+    {
+        $dataBarang =  Barang::get();
+        return view('penjual.databarang', compact('dataBarang'));
+    }
+
+    public function hapusbarang($id)
+    {
+        DB::table('barangs')->where('id', $id)->delete();
+        
+        alert()->error('Hapus', 'Berhasil!');
+        return redirect('databarang');
+    }
+
+    public function editbarang() 
+    {
+        $update_data = Barang::paginate(1);
+        return view('penjual.editbarang', compact('update_data'));
+    }
+
+    public function editdatabarang(Request $request)
+    {
+        $this->validate($request, [
+            'gambar' => 'required|file|image|mimes:jpeg,png,jpg|max:2048'
+        ]);
+
+        $gambar = $request->gambar;
+
+        $folder_simpan = 'toko_online';
+        $gambar->move($folder_simpan, $gambar->getClientOriginalName());
+
+        DB::table('barangs')->where('id', $request->id)->update([
+            'nama_barang' => $request->nama_barang,
+            'ukuran' => $request->ukuran,
+            'stok' => $request->stok,
+            'harga' => $request->harga,
+            'keterangan' => $request->keterangan,
+            'gambar' =>  $gambar->getClientOriginalName() // nanti ya
+        ]);
+
+        alert()->success('Edit Data Barang', 'Berhasil!');
+        return redirect('databarang');
+    }
+
     /**
      * Show the form for creating a new resource.
      *

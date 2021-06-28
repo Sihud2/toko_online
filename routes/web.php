@@ -52,4 +52,7 @@ Route::post('/kirimBarang/{id}', 'AdminController@kirimresi');
 Route::get('/pesanBarang', 'AdminController@pesanMasuk');
 Route::post('/pesanBarang', 'AdminController@statusproses');
 Route::get('/laporan', 'AdminController@laporan');
-
+Route::get('/databarang', 'AdminController@databarang');
+Route::get('/databarang/{id}', 'AdminController@hapusbarang');
+Route::get('/editbarang/{id}', 'AdminController@editbarang');
+Route::post('/editbarang/{id}', 'AdminController@editdatabarang');
