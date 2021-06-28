@@ -45,8 +45,6 @@ class PesanController extends Controller
             $pesanan->tanggal = $tanggal;
             $pesanan->status = 0;
             $pesanan->jumlah_harga = 0;
-            $pesanan->status_pengiriman = "";
-            $pesanan->no_resi = "";
             $pesanan->biaya_admin = 1000;
             $pesanan->save();
         }
@@ -168,19 +166,19 @@ class PesanController extends Controller
         // status ketika sudah kirim bukti pembayaran
         $pesanan_status = Pesanan::where('user_id', Auth::user()->id)->where('status', 1)->first();
         $pesanan_status->status = 2; // status user membayar
-        $pesanan_status->status_pengiriman = "";
+        // $pesanan_status->status_pengiriman = "";
         $pesanan_status->update();
 
         $pesanan = Pesanan::where('id', $id)->first();
         $pesanan_detail = PesananDetail::where('pesanan_id', $pesanan->id)->get();
         
         alert()->success('Upload', 'Berhasil!');
-        return view('riwayat.detail', compact('pesanan','pesanan_detail'));
+        return view('riwayat.detail', compact('pesanan', 'pesanan_detail'));
     }
 
     public function statusperjalanan()
     {
-        $transaksi = Transaksi::get();
+        // $transaksi = Transaksi::get();
         return view('riwayat.kirim_barang');
     }
 
