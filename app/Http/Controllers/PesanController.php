@@ -26,7 +26,7 @@ class PesanController extends Controller
     public function pesan(Request $request, $id)
     {
         $barang = Barang::where('id', $id)->first();
-        $tanggal = Carbon::now(); //fungsi manipulasi waktu atau hari
+        $tanggal = Carbon::now()->format('Y-m-d'); //fungsi manipulasi waktu atau tanggal
         
         // validasi pesan lebih stok
         $jumlahPesanan = $request->jumlah_pesan;

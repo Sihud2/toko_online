@@ -7,6 +7,7 @@ use App\Models\PesananDetail;
 use App\Models\Transaksi;
 use App\Models\User;
 use DB;
+use MONTH;
 use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
@@ -49,7 +50,16 @@ class AdminController extends Controller
 
     public function laporan()
     {
-        return view('penjual.laporan');
+        $data = Pesanan::select('tanggal', 'jumlah_harga')->paginate(10);
+        return view('penjual.laporan', compact('data'));
+    }
+    
+    public function tampildatalaporan(Request $request)
+    {
+        $bulan = $request->bulan;
+        $data = Pesanan::whereMonth('tanggal', '=', $bulan)->get();
+        $total = Pesanan::WhereMonth('tanggal', '=', $bulan)->sum('jumlah_harga');
+        return view('penjual.laporan', compact('data', 'total'));
     }
 
     /**

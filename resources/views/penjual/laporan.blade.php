@@ -1,27 +1,57 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('penjual.navbar')
+@section('content')
+<center>
+  <h1 class="mt-5">Halaman Laporan</h1>
+</center>
+<div class="container" style="margin-left: 33rem;">
+  <div class="col-md-4 m-2">
+    <div class="card bg-secondary text-white" style="padding-left: 5rem;">
+        <div class="card-body">
+          <label for="bulan">Pilih Bulan</label>
+          <form action="/laporan/bulan" method="get">
+            <select name="bulan" id="bulan" style="width:10rem">
+              <option value="">-</option>
+              <option value="01">Januari</option>
+              <option value="02">Februari</option>
+              <option value="03">Maret</option>
+              <option value="04">April</option>
+              <option value="05">Mei</option>
+              <option value="06">Juni</option>
+              <option value="07">Juli</option>
+              <option value="08">Agustus</option>
+              <option value="09">September</option>
+              <option value="10">Oktober</option>
+              <option value="12">November</option>
+              <option value="12">Desember</option>
+              </select>
+              <button class="btn btn-primary">Pilih Data</button>
+          </form>
+        </div>
+    </div>
+  </div>
+</div>
+<div class="container" style="width: 50rem;">
+  <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th scope="col">No</th>
+          <th scope="col">Tanggal</th>
+          <th scope="col">Jumlah</th>
+        </tr>
+      </thead>
+      <tbody>
+      @foreach ($data as $data_s)
+        <tr>
+          <th scope="row">{{ $loop->iteration }}</th>
+          <td>{{ $data_s->tanggal }}</td>
+          <td>{{ $data_s->jumlah_harga }}</td>
+        </tr>
+      @endforeach
+      <tr>
+        <th colspan="2" align="center">Total Pendapatan</th>
+        <th>{{ $total }}</th>
+      </tr>
+      </tbody>
+    </table>
 
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-
-    <title>Laporan</title>
-  </head>
-  <body>
-    <h1>halaman laporan</h1>
-
-    <!-- Optional JavaScript; choose one of the two! -->
-
-    <!-- Option 1: Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
-
-    <!-- Option 2: Separate Popper and Bootstrap JS -->
-    <!--
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
-    -->
-  </body>
-</html>
+@endsection
